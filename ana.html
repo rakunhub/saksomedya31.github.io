@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+<style>
+/* Reset ve temel stiller */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  width: 120px;
+  z-index: 11;
+}
+
+/* Galeri */
+.gallery {
+  margin-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery-item {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  max-width: 300px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+.gallery-item img {
+  max-width: 100%%;
+  border-radius: 10px;
+}
+
+.gallery-item p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+
+<div class="navbar">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="#">Hakkında</a>
+  <a href="ana.html">Galeri</a>
+</div>
+<img src="logo.png" alt="Logo" class="logo">
+
+<style>
+body {
+  background: url('anime_girl_red.gif') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 150px;
+}
+</style>
+<img src='logo.png' alt='Logo' class='logo'>
+
+  <meta charset="UTF-8">
+  <title>RakunHub</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    header img {
+      height: 50px;
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+    .anime-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      background: url('anime_girl_red.gif') center center / cover no-repeat;
+    }
+    main {
+      padding: 20px;
+      animation: fadeInZoom 1s ease;
+    }
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .menu {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 20px;
+      top: 50px;
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 1px solid red;
+      padding: 10px;
+    }
+    .dropdown a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+    section {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="anime-bg"></div>
+  <header>
+    <img src="logo.png" alt="RakunHub">
+    <h1>rakunhub</h1>
+    <div class="menu" onclick="toggleDropdown()">⋮</div>
+    <div class="dropdown" id="dropdown">
+      <a href="#photos">Fotoğraflar</a>
+      <a href="#videos">Videolar</a>
+    </div>
+  </header>
+  <main>
+    <section id="photos">
+      <h2>Fotoğraflar</h2>
+      <input type="file" accept="image/*" onchange="displayImage(this)"><br><br>
+      <div id="photo-gallery"></div>
+    </section>
+    <section id="videos">
+      <h2>Videolar</h2>
+      <input type="file" accept="video/*" onchange="displayVideo(this)"><br><br>
+      <div id="video-gallery"></div>
+    </section>
+  </main>
+  <audio autoplay loop>
+    <source src="cool_beat.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+    function displayImage(input) {
+      const file = input.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '200px';
+          img.style.margin = '10px';
+          document.getElementById('photo-gallery').appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+    function displayVideo(input) {
+      const file = input.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const video = document.createElement('video');
+          video.src = e.target.result;
+          video.controls = true;
+          video.style.maxWidth = '300px';
+          video.style.margin = '10px';
+          document.getElementById('video-gallery').appendChild(video);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+
+<audio autoplay loop>
+  <source src="desires-rnb-type-beat-277125.mp3" type="audio/mpeg">
+</audio>
+
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="anime_girl_red.gif" alt="Anime Girl">
+    <p>Geceye karışmış bir düş gibi...</p>
+  </div>
+  <div class="gallery-item">
+    <img src="anime_girl_red.gif" alt="Anime Girl">
+    <p>Rüzgarla savrulan sessiz duygular.</p>
+  </div>
+  <div class="gallery-item">
+    <img src="anime_girl_red.gif" alt="Anime Girl">
+    <p>Gözlerinde sonsuzluk var gibi.</p>
+  </div>
+</div>
+
+</body>
+</html>
